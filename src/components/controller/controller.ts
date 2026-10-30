@@ -1,0 +1,50 @@
+import AppLoader from './appLoader';
+import { API_ENDPOINTS } from '../../config/api';
+import type { ArticlesResponse, Callback, SourcesResponse } from '../../types/news-api';
+
+class AppController extends AppLoader {
+    public getSources(callback: Callback<SourcesResponse>): void {
+        super.getResp<SourcesResponse>(
+            {
+                endpoint: API_ENDPOINTS.sources,
+            },
+            callback
+        );
+    }
+
+    public getNews(event: MouseEvent, callback: Callback<ArticlesResponse>): void {
+        const target: EventTarget | null = event.target;
+        const newsContainer: EventTarget | null = event.currentTarget;
+
+        if (!(target instanceof HTMLElement) || !(newsContainer instanceof HTMLElement)) {
+            return;
+        }
+
+        let current: HTMLElement | null = target;
+
+        while (current && current !== newsContainer) {
+            if (current.classList.contains('source__item')) {
+                const sourceId: string | null = current.getAttribute('data-source-id');
+
+                if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
+                    newsContainer.setAttribute('data-source', sourceId);
+                    super.getResp<ArticlesResponse>(
+                        {
+                            endpoint: API_ENDPOINTS.news,
+                            options: {
+                                sources: sourceId,
+                            },
+                        },
+                        callback
+                    );
+                }
+
+                return;
+            }
+
+            current = current.parentElement;
+        }
+    }
+}
+
+export default AppController;
