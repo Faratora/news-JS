@@ -33,6 +33,6 @@ in `.env`.
 ## Design improvements
 
 - Responsive card grid for news articles
-- Horizontally scrollable source filters
+- Compact sticky source sidebar on desktop with a scrollable source list on mobile
 - Image fallbacks and hover states for news cards
 - Footer with the author's GitHub, creation year and an RS School logo link
