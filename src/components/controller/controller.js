@@ -1,10 +1,11 @@
 import AppLoader from './appLoader';
+import { API_ENDPOINTS } from '../../config/api';
 
 class AppController extends AppLoader {
     getSources(callback) {
         super.getResp(
             {
-                endpoint: 'sources',
+                endpoint: API_ENDPOINTS.sources,
             },
             callback
         );
@@ -21,7 +22,7 @@ class AppController extends AppLoader {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
-                            endpoint: 'everything',
+                            endpoint: API_ENDPOINTS.news,
                             options: {
                                 sources: sourceId,
                             },

@@ -1,10 +1,9 @@
 import Loader from './loader';
+import { API_URL, API_KEY } from '../../config/api';
 
 class AppLoader extends Loader {
     constructor() {
-        super(process.env.API_URL, {
-            apiKey: process.env.API_KEY,
-        });
+        super(API_URL, API_KEY ? { apiKey: API_KEY } : {});
     }
 }
 

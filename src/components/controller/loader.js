@@ -25,13 +25,13 @@ class Loader {
 
     makeUrl(options, endpoint) {
         const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+        const baseLink = this.baseLink.endsWith('/') ? this.baseLink : `${this.baseLink}/`;
+        const query = Object.entries(urlOptions)
+            .filter(([, value]) => value !== undefined && value !== null && value !== '')
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            .join('&');
 
-        Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
-        });
-
-        return url.slice(0, -1);
+        return `${baseLink}${endpoint}${query ? `?${query}` : ''}`;
     }
 
     load(method, endpoint, callback, options = {}) {
