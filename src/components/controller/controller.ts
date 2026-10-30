@@ -21,10 +21,18 @@ class AppController extends AppLoader {
         }
 
         let current: HTMLElement | null = target;
+        const sourceItems: NodeListOf<HTMLElement> = newsContainer.querySelectorAll<HTMLElement>('.source__item');
 
         while (current && current !== newsContainer) {
             if (current.classList.contains('source__item')) {
                 const sourceId: string | null = current.getAttribute('data-source-id');
+
+                sourceItems.forEach((item: HTMLElement): void => {
+                    const isActive: boolean = item === current;
+
+                    item.classList.toggle('source__item_active', isActive);
+                    item.setAttribute('aria-pressed', String(isActive));
+                });
 
                 if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);

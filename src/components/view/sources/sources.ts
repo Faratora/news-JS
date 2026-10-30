@@ -10,10 +10,11 @@ class Sources {
 
         data.forEach((item: NewsSource): void => {
             const sourceClone: DocumentFragment = cloneTemplate(sourceItemTemp);
-            const sourceItem: HTMLElement = getElement<HTMLElement>('.source__item', sourceClone);
+            const sourceItem: HTMLButtonElement = getElement<HTMLButtonElement>('.source__item', sourceClone);
 
             getElement<HTMLElement>('.source__item-name', sourceClone).textContent = item.name;
             sourceItem.dataset.sourceId = item.id;
+            sourceItem.title = item.name;
 
             fragment.append(sourceClone);
         });
