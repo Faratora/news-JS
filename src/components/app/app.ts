@@ -14,6 +14,18 @@ class App {
 
     public start(): void {
         const sourcesContainer: HTMLElement = getElement<HTMLElement>('.sources');
+        const sourcesSection: HTMLElement = getElement<HTMLElement>('.section_sources');
+        const sourcesToggle: HTMLButtonElement = getElement<HTMLButtonElement>('.sources-toggle');
+
+        sourcesToggle.addEventListener('click', (): void => {
+            const isOpen: boolean = sourcesSection.classList.toggle('section_sources_open');
+
+            sourcesToggle.setAttribute('aria-expanded', String(isOpen));
+            sourcesToggle.setAttribute(
+                'aria-label',
+                isOpen ? 'Закрыть список источников' : 'Открыть список источников'
+            );
+        });
 
         sourcesContainer.addEventListener('click', (event: MouseEvent): void => {
             this.controller.getNews(event, (data: ArticlesResponse): void => {

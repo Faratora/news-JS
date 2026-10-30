@@ -34,6 +34,16 @@ class AppController extends AppLoader {
                     item.setAttribute('aria-pressed', String(isActive));
                 });
 
+                const sourcesSection: HTMLElement | null = newsContainer.closest<HTMLElement>('.section_sources');
+                const sourcesToggle: HTMLButtonElement | null =
+                    sourcesSection?.querySelector<HTMLButtonElement>('.sources-toggle') ?? null;
+
+                if (sourcesSection && sourcesToggle) {
+                    sourcesSection.classList.remove('section_sources_open');
+                    sourcesToggle.setAttribute('aria-expanded', 'false');
+                    sourcesToggle.setAttribute('aria-label', 'Открыть список источников');
+                }
+
                 if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp<ArticlesResponse>(

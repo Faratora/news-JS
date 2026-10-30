@@ -19,8 +19,19 @@
 
             <main class="main">
                 <section class="section section_sources" aria-labelledby="sources-title">
-                    <h2 class="section__title" id="sources-title">Источники</h2>
-                    <div class="sources"></div>
+                    <div class="section__header">
+                        <h2 class="section__title" id="sources-title">Источники</h2>
+                        <button
+                            class="sources-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="sources-list"
+                            aria-label="Открыть список источников"
+                        >
+                            <span class="sources-toggle__icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="sources" id="sources-list"></div>
                 </section>
 
                 <section class="section" aria-labelledby="news-title">
