@@ -18,6 +18,7 @@ class App {
         const sourcesContainer: HTMLElement = getElement<HTMLElement>('.sources');
         const sourcesSection: HTMLElement = getElement<HTMLElement>('.section_sources');
         const sourcesToggle: HTMLButtonElement = getElement<HTMLButtonElement>('.sources-toggle');
+        const newsSection: HTMLElement = getElement<HTMLElement>('.section_news');
 
         sourcesToggle.addEventListener('click', (): void => {
             this.setSourcesMenuOpen(sourcesSection, sourcesToggle, !this.isSourcesMenuOpen(sourcesSection));
@@ -28,6 +29,7 @@ class App {
 
             if (target instanceof HTMLElement && target.closest('.source__item')) {
                 this.setSourcesMenuOpen(sourcesSection, sourcesToggle, false);
+                newsSection.hidden = false;
             }
 
             this.controller.getNews(event, (data: ArticlesResponse): void => {
