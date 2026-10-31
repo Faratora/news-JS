@@ -260,6 +260,11 @@ a {
 }
 
 @media (max-width: 760px) {
+    html.sources-menu-open,
+    html.sources-menu-open body {
+        overflow: hidden;
+    }
+
     .main {
         display: flex;
         flex-direction: column;
