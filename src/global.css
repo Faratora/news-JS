@@ -245,9 +245,9 @@ a {
 .footer__course {
     display: inline-flex;
     align-items: center;
-    padding: 0.3rem 0.65rem;
-    background: #ffffff;
-    border-radius: 10px;
+    padding: 0;
+    background: none;
+    border-radius: 50%;
 }
 
 .footer__course:hover,
@@ -257,8 +257,9 @@ a {
 
 .footer__logo {
     display: block;
-    width: 84px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     object-fit: contain;
 }
 
