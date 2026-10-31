@@ -11,10 +11,10 @@ News portal built with TypeScript and Webpack. The application loads news source
 
 The application uses the [News API proxy](https://rss-news-api.onrender.com/) because the original API is only
 available from localhost.  
-In development (`npm start`) the proxy mock endpoints (`/mocks/sources` and `/mocks/everything`) are used
-automatically to save the API key limit.  
-The production build (`npm run build`) uses the real `/sources` and `/everything` endpoints, so `API_KEY` must be set
-in `.env`.
+When `API_KEY` is set in `.env`, both development and production use the live `/sources` and `/everything` endpoints,
+so articles and their links are up to date.  
+Without a key the app falls back to the proxy mock endpoints (`/mocks/sources` and `/mocks/everything`); mock articles
+are outdated, so their external links may return 404.
 
 ## Scripts
 
