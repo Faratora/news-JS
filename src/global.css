@@ -121,6 +121,10 @@ a {
     min-width: 0;
 }
 
+.section[hidden] {
+    display: none;
+}
+
 .section_sources {
     position: sticky;
     top: 1.5rem;
