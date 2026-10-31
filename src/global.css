@@ -135,7 +135,6 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 2.5rem;
 }
 
 .sources-toggle {
