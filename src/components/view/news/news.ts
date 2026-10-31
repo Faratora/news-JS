@@ -7,9 +7,15 @@ class News {
 
     public draw(data: ReadonlyArray<NewsArticle>): void {
         const news: ReadonlyArray<NewsArticle> = data.slice(0, News.MAX_ARTICLES);
+        const newsContainer: HTMLElement = getElement<HTMLElement>('.news');
+
+        if (news.length === 0) {
+            newsContainer.replaceChildren(this.createEmptyState());
+            return;
+        }
+
         const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement = getElement<HTMLTemplateElement>('#newsItemTemp');
-        const newsContainer: HTMLElement = getElement<HTMLElement>('.news');
 
         news.forEach((item: NewsArticle): void => {
             const newsClone: DocumentFragment = cloneTemplate(newsItemTemp);
@@ -34,6 +40,15 @@ class News {
         });
 
         newsContainer.replaceChildren(fragment);
+    }
+
+    private createEmptyState(): HTMLParagraphElement {
+        const empty: HTMLParagraphElement = document.createElement('p');
+
+        empty.className = 'news__empty';
+        empty.textContent = 'Для этого источника новостей не найдено. Попробуйте выбрать другой источник.';
+
+        return empty;
     }
 
     private formatDate(value: string): string {

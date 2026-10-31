@@ -6,6 +6,17 @@
     min-width: 0;
 }
 
+.news__empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 2rem 1.25rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 18px;
+    text-align: center;
+}
+
 .news__item {
     display: flex;
     flex-direction: column;
