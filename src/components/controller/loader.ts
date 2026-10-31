@@ -30,8 +30,11 @@ class Loader<TParams extends RequestParams = RequestParams> {
         const urlOptions: RequestParams = { ...this.options, ...options };
         const baseLink: string = this.baseLink.endsWith('/') ? this.baseLink : `${this.baseLink}/`;
         const query: string = Object.entries(urlOptions)
-            .filter(([, value]) => typeof value === 'string' && value.length > 0)
-            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+            .filter(([, value]: [string, string | undefined]): boolean => typeof value === 'string' && value.length > 0)
+            .map(
+                ([key, value]: [string, string | undefined]): string =>
+                    `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`
+            )
             .join('&');
 
         return `${baseLink}${endpoint}${query ? `?${query}` : ''}`;
@@ -46,7 +49,7 @@ class Loader<TParams extends RequestParams = RequestParams> {
         try {
             const response: Response = await fetch(this.makeUrl(options, endpoint), { method });
             const checkedResponse: Response = this.errorHandler(response);
-            const data = (await checkedResponse.json()) as TResponse;
+            const data: TResponse = (await checkedResponse.json()) as TResponse;
 
             callback(data);
         } catch (error: unknown) {

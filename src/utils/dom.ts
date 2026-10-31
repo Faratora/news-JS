@@ -1,5 +1,5 @@
 export function getElement<T extends Element>(selector: string, parent: ParentNode = document): T {
-    const element = parent.querySelector<T>(selector);
+    const element: T | null = parent.querySelector<T>(selector);
 
     if (!element) {
         throw new Error(`Element "${selector}" was not found`);

@@ -1,6 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import type { ArticlesResponse, SourcesResponse } from '../../types/news-api';
+import type { ArticlesResponse, NewsArticle, NewsSource, SourcesResponse } from '../../types/news-api';
 
 export class AppView {
     private readonly news: News;
@@ -12,13 +12,13 @@ export class AppView {
     }
 
     public drawNews(data: ArticlesResponse): void {
-        const values = data.articles ?? [];
+        const values: ReadonlyArray<NewsArticle> = data.articles ?? [];
 
         this.news.draw(values);
     }
 
     public drawSources(data: SourcesResponse): void {
-        const values = data.sources ?? [];
+        const values: ReadonlyArray<NewsSource> = data.sources ?? [];
 
         this.sources.draw(values);
     }
